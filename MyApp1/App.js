@@ -15,18 +15,21 @@ export default function App() {
             carrera="TIID"
             materia="Desarrollo de Apps Moviles"
             cuatrimestre="4"
+            style={styles.tarjeta1}
           />
           <Perfil
             nombre="Test"
             carrera="TIID"
             materia=""
             cuatrimestre="4"
+            style={styles.tarjeta2}
           />
           <Perfil
             nombre="Bla bla"
             carrera=""
             materia="Desarrollo de Apps Moviles"
             cuatrimestre="4"
+            style={styles.tarjeta3}
           />
 
       <StatusBar style="auto" />
@@ -37,11 +40,17 @@ export default function App() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#1a1a1a',
+    display: 'flex',
+    flexDirection: 'row',
+    justifyContent: 'space-evenly',
     alignItems: 'center',
-    justifyContent: 'center',
+    backgroundColor: '#1a1a1a',
+    gap: 15
   },
     text: {
     color: '#fff'
-  }
+  },
+  tarjeta1: {backgroundColor: "rgb(13, 17, 22)"},
+  tarjeta2: {backgroundColor: "rgb(13, 17, 22)"},
+  tarjeta3: {backgroundColor: "rgb(13, 17, 22)"}
 });

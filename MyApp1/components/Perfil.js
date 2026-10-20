@@ -2,13 +2,15 @@ import { useState } from 'react';
 
 import { StyleSheet, Text, View, Button } from 'react-native';
 
-export const Perfil = ({nombre, carrera, materia, cuatrimestre}) => {
+export const Perfil = ({nombre, carrera, materia, cuatrimestre, color, style}) => {
   const [mostrar, setMostrar] = useState(false);
 
+  
+  
   return (
-    <View style={styles.card}>
+    <View style={[styles.card, style]}>
       <Text style={styles.titulo}>Perfil</Text>
-      <Text style={styles.dato}>Nombre: {nombre}</Text>
+      <Text style={[styles.dato, styles.nombre]}>{nombre}</Text>
       <Button 
         title={mostrar ? 'Ocultar Perfil' : 'Mostrar Perfil'}
         onPress={() => setMostrar(!mostrar)}
@@ -28,7 +30,7 @@ export const Perfil = ({nombre, carrera, materia, cuatrimestre}) => {
 const styles = StyleSheet.create({
   card: {
     width: '100%',
-    maxWidth: 280,
+    maxWidth: 200,
     padding: 20,
     borderRadius: 20,
     backgroundColor: 'rgb(13, 17, 22)',
@@ -37,17 +39,30 @@ const styles = StyleSheet.create({
   titulo: {
     marginBottom: 10,
     color: '#f9fafb',
-    fontSize: 28,
+    fontSize: 18,
     fontWeight: '700',
     textAlign: 'center',
   },
   dato: {
     marginBottom: 8,
     color: '#e5e7eb',
-    fontSize: 18,
+    fontSize: 14,
     lineHeight: 20,
   },
-  btn: {
-    backgroundColor: '#e5e7eb'
+  nombre: {
+    fontSize: 24,
+    fontWeight: '600',
+    textTransform: 'uppercase',
+  },
+  carrera: {
+    fontSize: 18,
+    color: 'purple',
+    fontFamily: "Roboto"
+  },
+  otroTexto: {
+    fontSize: 12,
+    fontFamily: "Courier",
+    fontStyle: "italic",
+    color: '#e5e7eb',
   }
 });
