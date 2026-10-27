@@ -1,28 +1,54 @@
 import { StatusBar } from 'expo-status-bar';
-import { Text } from 'react-native';
+// import { SafeAreaView, SafeAreaProvider } from 'react-native-safe-area-context';
+import { Text, ScrollView, SafeAreaView } from 'react-native';
 import { StyleSheet, View } from 'react-native';
 
 export default function SafeScreen() {
     return (
-        <View style={styles.container}>
-            <Text style={styles.text}>Practica SafeAreaView y ScrollView</Text>
+        <SafeAreaView style={styles.container}>
+          <ScrollView contentContainerStyle={styles.scrollContent}>
+            <Text style={styles.title}>Practica SafeAreaView y ScrollView</Text>
+            <Text style={styles.subtitle}>Desliza hacia abajo para ver mas</Text>
 
-            <StatusBar style="auto" />
-        </View>
-    );
+            {[...Array(15)].map((_, index) => (
+              <View key={index} style={styles.box}>
+                <Text>
+                  Registro de prueba {index + 1}
+                </Text>
+              </View>
+            ))}
+
+        </ScrollView>
+      </SafeAreaView>
+  );
 }
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    display: 'flex',
-    flexDirection: 'row',
-    justifyContent: 'space-evenly',
-    alignItems: 'center',
     backgroundColor: '#1a1a1a',
-    gap: 15
   },
-  text: {
-    color: '#fff'
+  scrollContent: {
+    padding: 20,
+    alignItems: 'center',
   },
+  title: {
+    color: '#fff',
+    fontSize: 24,
+    fontWeight: 'bold',
+    marginTop: 10,
+  },
+  subtitle: {
+    color: '#fff',
+    fontSize: 16,
+    marginBottom: 20,
+  },
+  box: {
+    backgroundColor: '#fff',
+    width: "90%",
+    padding: 30,
+    marginVertical: 10,
+    borderRadius: 8,
+    elevation: 3
+  }
 });
