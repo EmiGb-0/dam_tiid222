@@ -1,48 +1,84 @@
+
+import { useState } from 'react';
 import { StatusBar } from 'expo-status-bar';
 import { StyleSheet, View, Text, Pressable, Image } from 'react-native';
 
 export default function PressSwitchScreen() {
-    return (
-        <View style={styles.container}>
-        
-        <Pressable
-          onPress={() => console.log("Clic Texto")}
-          onPressIn={() => console.log("Inició")}
-          onPressOut={() => console.log("Terminó")}
-          onLongPress={() => console.log("Pulsación larga")}
-          onHoverIn={() => console.log("Puntero dentro")}
-          onHoverOut={() => console.log("Puntero fuera")}
-          delayLongPress={800}
-          hitSlop={12}
-        >
-          <Text style={styles.text}>Interactúa conmigo</Text>
-        </Pressable>
+  const [mensaje, setMensaje] = useState('Interactúa con los elementos');
+  const [imagenGrande, setImagenGrande] = useState(false);
 
-        <Pressable
-          onPress={() => console.log("Clic Imagen")}
-        >
-          <Image source={require('../assets/img-press.jpg')} style={styles.image} />
-        </Pressable>
-        <StatusBar style="light" />
-        </View>
-    );
+  return (
+    <View style={styles.container}>
+
+      <Text style={styles.titulo}>Práctica Pressable</Text>
+
+      {/* Pressable con texto */}
+      <Pressable
+        onPress={() => setMensaje('¡Presionaste el texto!')}zz
+        onLongPress={() => setMensaje('¡Pulsación larga detectada!')}
+        delayLongPress={800}
+        style={styles.boton}
+      >
+        <Text style={styles.text}>Presióname</Text>
+      </Pressable>
+
+      {/* Pressable con imagen */}
+      <Pressable
+        onPress={() => {
+          setImagenGrande(!imagenGrande);
+          setMensaje('¡Presionaste la imagen!');
+        }}
+      >
+        <Image
+          source={require('../assets/img-press.jpg')}
+          style={[
+            styles.image,
+            imagenGrande && styles.imagenGrande
+          ]}
+        />
+      </Pressable>
+
+      <Text style={styles.mensaje}>{mensaje}</Text>
+
+      <StatusBar style="light" />
+    </View>
+  );
 }
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    display: 'flex',
-    flexDirection: 'row',
-    justifyContent: 'space-evenly',
+    justifyContent: 'center',
     alignItems: 'center',
     backgroundColor: '#1a1a1a',
-    gap: 15
+    gap: 25,
+  },
+  titulo: {
+    color: '#fff',
+    fontSize: 24,
+    fontWeight: 'bold'
+  },
+  boton: {
+    backgroundColor: '#444',
+    padding: 15,
+    borderRadius: 10
   },
   text: {
-    color: '#fff'
+    color: '#fff',
+    fontSize: 18
   },
   image: {
     width: 100,
-    height: 100
+    height: 100,
+    borderRadius: 10
+  },
+  imagenGrande: {
+    width: 180,
+    height: 180
+  },
+  mensaje: {
+    color: '#fff',
+    fontSize: 16,
+    textAlign: 'center'
   }
 });
